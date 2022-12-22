@@ -22,12 +22,4 @@ def index():
     return render_template('index.html', items=items)
 
 if __name__ == '__main__':
-    data = {
-        "host": os.getenv("HOST"),
-        "dbname": os.getenv("DBNAME"),
-        "user": os.getenv("USER"),
-        "password": os.getenv("PASSWORD"),
-        "port": os.getenv("PORT")
-    }
-    print(data)
     app.run(host='0.0.0.0', port=8080, debug=True)
