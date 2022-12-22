@@ -1,0 +1,27 @@
+<!-- index.html -->
+<html>
+  <head>
+    <title>Scraped items</title>
+  </head>
+  <style>
+    div.items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    div.item {
+        height: 30%;
+        width: 25%;
+    }
+</style>
+  <body>
+  <div class="items">
+    {% for item in items %}
+    <div class="item">
+      <img src="{{ item[1] }}" alt="{{ item[0] }}" />
+      <h2>{{ item[0]}}</h2>
+    </div>
+    {% endfor %}
+  </div>
+  </body>
+</html>
