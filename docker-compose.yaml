@@ -1,0 +1,31 @@
+version: '3'
+services:
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: "${USER}"
+      POSTGRES_PASSWORD: "${PASSWORD}"
+      POSTGRES_DB: "${DBNAME}"
+    ports:
+      - "${PORT}:${PORT}"
+    restart: always
+  scrapy:
+    build: srealitycrawl
+    volumes:
+      - ./srealitycrawl:/usr/src/srealitytask
+    ports:
+      - "8000:5000"
+    depends_on:
+      - database
+    env_file:
+      - ./.env
+
+  web:
+    build: flask_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+      - scrapy
+    env_file:
+      - ./.env
